@@ -145,7 +145,7 @@ data set:
   Veteran's Day, Independence Day, Memorial Day, Labor Day, Christmas Eve, and
   New Year's Eve. 
 * Add a column called `dt_spring` that has a 1 for every day between 
-  Easter Sunday and Labor Day. Note that this isn't a canned `step_` function.
+  Easter Sunday and Memorial Day. Note that this isn't a canned `step_` function.
   (I had to do that for a model once because this was a busy time for shopping
   for spring clothing lines.)
 * Have all your columns begin with the string "dt_" so that we can see them on the 
