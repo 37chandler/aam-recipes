@@ -55,6 +55,11 @@ some of those columns. You'll `prep` the recipe on `d.subaru`, then
 `juice` it to get the transformed tibble out. Then I've asked you to answer 
 some questions about the results. 
 
+One aside: we are using the word "model" in two ways with this data set. One
+way represents statistical models, which we've been talking about most of the
+semester. The other is what I'm calling "auto models" or "car models" and represent
+the different types of Subarus (Foresters, Outbacks, etc.). 
+
 ### Auto Models
 
 The auto models in this data set are messy. There are 
@@ -75,7 +80,7 @@ are missing. Here's a messy picture:
 ```
 
 The top five, (Outback, Forester, Legacy, Impreza, WRX) have enough data to
-support modeling. We'd like to map others to an "Other" category. When you build
+support statistical modeling. We'd like to map others to an "Other" category. When you build
 your recipe, include a step that transforms the `model` column to do this mapping.
 
 ### Odometer Data
@@ -91,7 +96,8 @@ The `year` column clearly has some incorrect data in it. Additionally,
 the `year` column is completed for `r scales::percent(mean(!is.na(d.subaru$year)))`
 of our rows. Using either the K-nearest neighbors or linear model imputation 
 methods, add a recipe step that imputes `year`. Pay attention to what covariates
-you're using to do the imputation and be prepared to justify your choices. 
+are used by the imputation method using to do the imputation and think
+about how you would justify your choices. (I don't ask you to _do_ the justification.) 
 
 ## Your Recipe
 
@@ -104,8 +110,6 @@ d.prep <- d.subaru %>%
   prep() %>% 
   juice()
 
-
-
 ```
 
 ## Additional Tasks
@@ -113,12 +117,15 @@ d.prep <- d.subaru %>%
 With your `recipe` written, now some tasks for you: 
 
 1. Re-do the above plot of models on your prepped data. Interpret the results. 
-1. Build a plot of odometer reading in the original data versus the transformed
+1. Build a plot of `odometer` in the original data versus the transformed
 data. Which observations look odd? Were any new infinite values created when you 
 took the `log`? How come? What is a quick change to the recipe step that would 
 eliminate these? 
-1. Make a scatterplot of counts by year in the original data versus in the 
-imputed data. Which years show the biggest changes? 
+1. Make a plot of counts by year in the original data versus in the 
+imputed data. I recommend a scatterplot with the original counts of rows by year
+on one axis and the new counts on the other. If you use `geom_text` you can have
+the actual year numbers (e.g., "2012") displayed on the chart. 
+Which years show the biggest changes? 
 
 ### New Model Data
 
@@ -145,9 +152,10 @@ data set:
   Veteran's Day, Independence Day, Memorial Day, Labor Day, Christmas Eve, and
   New Year's Eve. 
 * Add a column called `dt_spring` that has a 1 for every day between 
-  Easter Sunday and Labor Day. Note that this isn't a canned `step_` function.
+  Easter Sunday and Memorial Day. Note that this isn't a canned `step_` function.
   (I had to do that for a model once because this was a busy time for shopping
-  for spring clothing lines.)
+  for spring clothing lines.) You do _not_ have to use a `recipe` function for
+  this column. I think it's much easier to do with a `for` loop. 
 * Have all your columns begin with the string "dt_" so that we can see them on the 
   plot
   
